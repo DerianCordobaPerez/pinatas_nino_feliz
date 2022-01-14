@@ -1,9 +1,14 @@
-import Express, { Request, Response } from 'express';
+import Express from 'express';
+import productRoutes from './routes/product.routes';
+import './config/dotenv.config';
+import './database';
 
 const app = Express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.set('port', process.env.PORT || 3000);
+
+app.use(Express.json());
+
+app.use(productRoutes);
 
 export default app;
