@@ -31,9 +31,10 @@
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
     "eslint": "^8.6.0",
     "express": "^4.17.2",
-    "dotenv": "^11.0.0",
+    "express-handlebars": "^6.0.2",
     "mongoose": "^6.1.6",
     "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8"
