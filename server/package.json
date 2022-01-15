@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
-    "build": "tsc -p .",
+    "sass:compile": "sass src/public/scss:src/public/css",
+    "ncp": "ncp src/views dist/views && ncp src/public dist/public",
+    "build": "tsc -p . && npm run sass:compile && npm run ncp",
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,11 +33,14 @@
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
     "eslint": "^8.6.0",
     "express": "^4.17.2",
-    "dotenv": "^11.0.0",
+    "express-handlebars": "^6.0.2",
     "mongoose": "^6.1.6",
+    "ncp": "^2.0.0",
     "prettier": "^2.5.1",
+    "sass": "^1.48.0",
     "ts-node-dev": "^1.1.8"
   },
   "husky": {
