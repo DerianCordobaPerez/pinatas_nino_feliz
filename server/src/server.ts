@@ -12,6 +12,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(cors());
 app.use(headers);
 
-app.use('/api/v1/', productRoutes);
+app.use('/api/ecommerce/v1/', productRoutes);
 
 export default app;
