@@ -1,11 +1,13 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import { SWRConfig } from 'swr'
+import { fetcher } from 'utils/fetcher'
 
-function MyApp ({ Component, pageProps }) {
+export default function MyApp ({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <SWRConfig value={{ fetcher }}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </SWRConfig>
   )
 }
-
-export default MyApp
