@@ -1,8 +1,9 @@
 import useSWR from 'swr'
-import { API_PRODUCTS } from 'constants/products'
+import { getKeyApiProducts } from 'constants/products'
 
-export const useProducts = () => {
-  const { data, error } = useSWR(API_PRODUCTS)
+export const useProducts = ({ slug }) => {
+  const { key } = getKeyApiProducts(slug)
+  const { data, error } = useSWR(key)
 
   return {
     products: data,
