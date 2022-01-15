@@ -1,6 +1,7 @@
-import Layout from '@/components/layout'
+import Layout from 'components/layout'
 import { useProducts } from 'hooks/useProducts'
 import { Spinner } from '@chakra-ui/react'
+import ProductList from 'components/products/productList'
 
 export default function Products () {
   const { products, isLoading } = useProducts()
@@ -17,11 +18,7 @@ export default function Products () {
 
   return (
     <Layout title='Productos'>
-      {products.map(product => (
-        <div key={product.id}>
-          <h2>{product.name}</h2>
-        </div>
-      ))}
+      <ProductList products={products} />
     </Layout>
   )
 }
