@@ -1,6 +1,3 @@
-import './config/dotenv.config';
-import './config/firebase.config';
-import './database';
 import { join } from 'path';
 import Express from 'express';
 import cors from 'cors';
@@ -9,6 +6,8 @@ import helmet from 'helmet';
 import { error404 } from './libs/error';
 import headers from './middlewares/headers';
 import productRoutes from './routes/product.routes';
+import './config/dotenv.config';
+import './database';
 
 // Create express server
 const app = Express();
