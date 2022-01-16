@@ -1,0 +1,31 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 37 | /   @include generateResponsive() {
+ * 38 | |     .w-1\/4r\@#{$breakpointAlias}, .sz-1\/4r\@#{$breakpointAlias}    { width: 0.25rem; }
+ * 39 | |     .w-1\/2r\@#{$breakpointAlias}, .sz-1\/2r\@#{$breakpointAlias}    { width: 0.5rem; }
+ * 40 | |     .w-3\/4r\@#{$breakpointAlias}, .sz-3\/4r\@#{$breakpointAlias}    { width: 0.75rem; }
+ * 41 | |     .w-1r\@#{$breakpointAlias}, .sz-1r\@#{$breakpointAlias}          { width: 1rem; }
+ * 42 | |     .w-3\/2r\@#{$breakpointAlias}, .sz-3\/2r\@#{$breakpointAlias}    { width: 1.5rem; }
+ * 43 | |     .w-2r\@#{$breakpointAlias}, .sz-2r\@#{$breakpointAlias}          { width: 2rem; }
+ * 44 | |     .w-5\/2r\@#{$breakpointAlias}, .sz-5\/2r\@#{$breakpointAlias}    { width: 2.5rem; }
+ * 45 | |     .w-3r\@#{$breakpointAlias}, .sz-3r\@#{$breakpointAlias}          { width: 3rem; }
+ * 46 | |     .w-7\/2r\@#{$breakpointAlias}, .sz-7\/2r\@#{$breakpointAlias}    { width: 3.5rem; }
+ * 47 | |     .w-4r\@#{$breakpointAlias}, .sz-4r\@#{$breakpointAlias}          { width: 4rem; }
+ * 48 | |     .w-9\/2r\@#{$breakpointAlias}, .sz-9\/2r\@#{$breakpointAlias}    { width: 4.5rem; }
+ * 49 | |     .w-5r\@#{$breakpointAlias}, .sz-5r\@#{$breakpointAlias}          { width: 5rem; }
+ * 50 | |     .w-11\/2r\@#{$breakpointAlias}, .sz-11\/2r\@#{$breakpointAlias}  { width: 5.5rem; }
+ * 51 | |     .w-6r\@#{$breakpointAlias}, .sz-6r\@#{$breakpointAlias}          { width: 6rem; }
+ * 52 | \   }
+ *    '
+ *   src/public/scss/spec/utils/layout/helpers/sizes.scss 37:3  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 37 \2502  \250c    @include generateResponsive() {\a 38 \2502  \2502      .w-1\\/4r\\@#{$breakpointAlias}, .sz-1\\/4r\\@#{$breakpointAlias}    { width: 0.25rem; }\a 39 \2502  \2502      .w-1\\/2r\\@#{$breakpointAlias}, .sz-1\\/2r\\@#{$breakpointAlias}    { width: 0.5rem; }\a 40 \2502  \2502      .w-3\\/4r\\@#{$breakpointAlias}, .sz-3\\/4r\\@#{$breakpointAlias}    { width: 0.75rem; }\a 41 \2502  \2502      .w-1r\\@#{$breakpointAlias}, .sz-1r\\@#{$breakpointAlias}          { width: 1rem; }\a 42 \2502  \2502      .w-3\\/2r\\@#{$breakpointAlias}, .sz-3\\/2r\\@#{$breakpointAlias}    { width: 1.5rem; }\a 43 \2502  \2502      .w-2r\\@#{$breakpointAlias}, .sz-2r\\@#{$breakpointAlias}          { width: 2rem; }\a 44 \2502  \2502      .w-5\\/2r\\@#{$breakpointAlias}, .sz-5\\/2r\\@#{$breakpointAlias}    { width: 2.5rem; }\a 45 \2502  \2502      .w-3r\\@#{$breakpointAlias}, .sz-3r\\@#{$breakpointAlias}          { width: 3rem; }\a 46 \2502  \2502      .w-7\\/2r\\@#{$breakpointAlias}, .sz-7\\/2r\\@#{$breakpointAlias}    { width: 3.5rem; }\a 47 \2502  \2502      .w-4r\\@#{$breakpointAlias}, .sz-4r\\@#{$breakpointAlias}          { width: 4rem; }\a 48 \2502  \2502      .w-9\\/2r\\@#{$breakpointAlias}, .sz-9\\/2r\\@#{$breakpointAlias}    { width: 4.5rem; }\a 49 \2502  \2502      .w-5r\\@#{$breakpointAlias}, .sz-5r\\@#{$breakpointAlias}          { width: 5rem; }\a 50 \2502  \2502      .w-11\\/2r\\@#{$breakpointAlias}, .sz-11\\/2r\\@#{$breakpointAlias}  { width: 5.5rem; }\a 51 \2502  \2502      .w-6r\\@#{$breakpointAlias}, .sz-6r\\@#{$breakpointAlias}          { width: 6rem; }\a 52 \2502  \2514    }\a    \2575 \a   src/public/scss/spec/utils/layout/helpers/sizes.scss 37:3  root stylesheet";
+}

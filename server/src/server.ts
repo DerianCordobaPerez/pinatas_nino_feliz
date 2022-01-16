@@ -1,11 +1,14 @@
+import './config/dotenv.config';
+import './config/firebase.config';
+import './database';
 import { join } from 'path';
 import Express from 'express';
 import cors from 'cors';
 import { engine } from 'express-handlebars';
-import productRoutes from './routes/product.routes';
+import helmet from 'helmet';
+import { error404 } from './libs/error';
 import headers from './middlewares/headers';
-import './config/dotenv.config';
-import './database';
+import productRoutes from './routes/product.routes';
 
 // Create express server
 const app = Express();
@@ -26,10 +29,12 @@ app.set('view engine', '.hbs');
 
 // Middlewares
 app.use(cors());
+app.use(helmet());
 app.use(headers);
 app.use(Express.static(join(__dirname, 'public')));
 
 // Routes
 app.use('/api/ecommerce/v1/', productRoutes);
+app.use(error404);
 
 export default app;

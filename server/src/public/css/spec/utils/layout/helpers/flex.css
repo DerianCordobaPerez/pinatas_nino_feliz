@@ -1,0 +1,19 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 28 | /   @include generateResponsive() {
+ * 29 | |     .d-f\@#{$breakpointAlias}     { display: flex; }
+ * 30 | |     .d-if\@#{$breakpointAlias}    { display: inline-flex; }
+ * 31 | \   }
+ *    '
+ *   src/public/scss/spec/utils/layout/helpers/flex.scss 28:3  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 28 \2502  \250c    @include generateResponsive() {\a 29 \2502  \2502      .d-f\\@#{$breakpointAlias}     { display: flex; }\a 30 \2502  \2502      .d-if\\@#{$breakpointAlias}    { display: inline-flex; }\a 31 \2502  \2514    }\a    \2575 \a   src/public/scss/spec/utils/layout/helpers/flex.scss 28:3  root stylesheet";
+}

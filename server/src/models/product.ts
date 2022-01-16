@@ -1,10 +1,10 @@
-import { Schema, model } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
-interface IProduct {
+interface IProduct extends Document {
   name: string;
   slug: string;
   price: number;
-  isNew: boolean;
+  new: boolean;
   numberReviews: number;
   description?: string;
   images?: string[];
@@ -12,41 +12,46 @@ interface IProduct {
   quantity?: number;
 }
 
-const productSchema = new Schema<IProduct>({
-  name: {
-    type: String,
-    required: true,
+const productSchema = new Schema<IProduct>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    new: {
+      type: Boolean,
+      required: true,
+    },
+    numberReviews: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
+    images: {
+      type: [String],
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    quantity: {
+      type: Number,
+    },
   },
-  slug: {
-    type: String,
-    required: true,
+  {
+    timestamps: true,
   },
-  price: {
-    type: Number,
-    required: true,
-  },
-  isNew: {
-    type: Boolean,
-    required: true,
-  },
-  numberReviews: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-  images: {
-    type: [String],
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  quantity: {
-    type: Number,
-  },
-});
+);
 
 export default model<IProduct>('Product', productSchema);
