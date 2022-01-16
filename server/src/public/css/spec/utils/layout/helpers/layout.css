@@ -1,0 +1,23 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 31 | /   @include generateResponsive() {
+ * 32 | |     .d-b\@#{$breakpointAlias}      { display: block !important; }
+ * 33 | |     .d-ib\@#{$breakpointAlias}     { display: inline-block !important; }
+ * 34 | |     .d-i\@#{$breakpointAlias}      { display: inline !important; }
+ * 35 | |     .d-tb\@#{$breakpointAlias}     { display: table !important; }
+ * 36 | |     .d-tbc\@#{$breakpointAlias}    { display: table-cell !important; }
+ * 37 | |     .d-n\@#{$breakpointAlias}      { display: none !important; }
+ * 38 | \   }
+ *    '
+ *   src/public/scss/spec/utils/layout/helpers/layout.scss 31:3  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 31 \2502  \250c    @include generateResponsive() {\a 32 \2502  \2502      .d-b\\@#{$breakpointAlias}      { display: block !important; }\a 33 \2502  \2502      .d-ib\\@#{$breakpointAlias}     { display: inline-block !important; }\a 34 \2502  \2502      .d-i\\@#{$breakpointAlias}      { display: inline !important; }\a 35 \2502  \2502      .d-tb\\@#{$breakpointAlias}     { display: table !important; }\a 36 \2502  \2502      .d-tbc\\@#{$breakpointAlias}    { display: table-cell !important; }\a 37 \2502  \2502      .d-n\\@#{$breakpointAlias}      { display: none !important; }\a 38 \2502  \2514    }\a    \2575 \a   src/public/scss/spec/utils/layout/helpers/layout.scss 31:3  root stylesheet";
+}

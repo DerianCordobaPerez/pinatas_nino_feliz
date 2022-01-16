@@ -1,0 +1,33 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 35 | /   @include generateResponsive() {
+ * 36 | |     .centerY\@#{$breakpointAlias} {
+ * 37 | |       top: 50%;
+ * 38 | |       transform: translateY(-50%);
+ * 39 | |     }
+ * 40 | | 
+ * 41 | |     .centerX\@#{$breakpointAlias} {
+ * 42 | |       left: 50%;
+ * 43 | |       transform: translateX(-50%);
+ * 44 | |     }
+ * 45 | | 
+ * 46 | |     .centerXY\@#{$breakpointAlias} {
+ * 47 | |       top: 50%;
+ * 48 | |       left: 50%;
+ * 49 | |       transform: translate(-50%, -50%);
+ * 50 | |     }
+ * 51 | \   }
+ *    '
+ *   src/public/scss/spec/utils/layout/utils/center.scss 35:3  @import
+ *   src/public/scss/spec/utils/layout/utils/index.scss 1:9    root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 35 \2502  \250c    @include generateResponsive() {\a 36 \2502  \2502      .centerY\\@#{$breakpointAlias} {\a 37 \2502  \2502        top: 50%;\a 38 \2502  \2502        transform: translateY(-50%);\a 39 \2502  \2502      }\a 40 \2502  \2502  \a 41 \2502  \2502      .centerX\\@#{$breakpointAlias} {\a 42 \2502  \2502        left: 50%;\a 43 \2502  \2502        transform: translateX(-50%);\a 44 \2502  \2502      }\a 45 \2502  \2502  \a 46 \2502  \2502      .centerXY\\@#{$breakpointAlias} {\a 47 \2502  \2502        top: 50%;\a 48 \2502  \2502        left: 50%;\a 49 \2502  \2502        transform: translate(-50%, -50%);\a 50 \2502  \2502      }\a 51 \2502  \2514    }\a    \2575 \a   src/public/scss/spec/utils/layout/utils/center.scss 35:3  @import\a   src/public/scss/spec/utils/layout/utils/index.scss 1:9    root stylesheet";
+}

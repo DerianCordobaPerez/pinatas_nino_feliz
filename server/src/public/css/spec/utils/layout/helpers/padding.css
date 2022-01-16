@@ -1,0 +1,32 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 39 | /     @include generateResponsive() {
+ * 40 | |       .p-#{$i}\@#{$breakpointAlias}  { padding: #{$i}px !important; }
+ * 41 | |       .pT-#{$i}\@#{$breakpointAlias} { padding-top: #{$i}px !important; }
+ * 42 | |       .pR-#{$i}\@#{$breakpointAlias} { padding-right: #{$i}px !important; }
+ * 43 | |       .pB-#{$i}\@#{$breakpointAlias} { padding-bottom: #{$i}px !important; }
+ * 44 | |       .pL-#{$i}\@#{$breakpointAlias} { padding-left: #{$i}px !important; }
+ * 45 | | 
+ * 46 | |       .pY-#{$i}\@#{$breakpointAlias} {
+ * 47 | |         padding-top: #{$i}px !important;
+ * 48 | |         padding-bottom: #{$i}px !important;
+ * 49 | |       }
+ * 50 | | 
+ * 51 | |       .pX-#{$i}\@#{$breakpointAlias} {
+ * 52 | |         padding-left: #{$i}px !important;
+ * 53 | |         padding-right: #{$i}px !important;
+ * 54 | |       }
+ * 55 | \     }
+ *    '
+ *   src/public/scss/spec/utils/layout/helpers/padding.scss 39:5  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 39 \2502  \250c      @include generateResponsive() {\a 40 \2502  \2502        .p-#{$i}\\@#{$breakpointAlias}  { padding: #{$i}px !important; }\a 41 \2502  \2502        .pT-#{$i}\\@#{$breakpointAlias} { padding-top: #{$i}px !important; }\a 42 \2502  \2502        .pR-#{$i}\\@#{$breakpointAlias} { padding-right: #{$i}px !important; }\a 43 \2502  \2502        .pB-#{$i}\\@#{$breakpointAlias} { padding-bottom: #{$i}px !important; }\a 44 \2502  \2502        .pL-#{$i}\\@#{$breakpointAlias} { padding-left: #{$i}px !important; }\a 45 \2502  \2502  \a 46 \2502  \2502        .pY-#{$i}\\@#{$breakpointAlias} {\a 47 \2502  \2502          padding-top: #{$i}px !important;\a 48 \2502  \2502          padding-bottom: #{$i}px !important;\a 49 \2502  \2502        }\a 50 \2502  \2502  \a 51 \2502  \2502        .pX-#{$i}\\@#{$breakpointAlias} {\a 52 \2502  \2502          padding-left: #{$i}px !important;\a 53 \2502  \2502          padding-right: #{$i}px !important;\a 54 \2502  \2502        }\a 55 \2502  \2514      }\a    \2575 \a   src/public/scss/spec/utils/layout/helpers/padding.scss 39:5  root stylesheet";
+}
