@@ -1,24 +1,21 @@
-import { getAuth, signInWithCustomToken } from 'firebase/auth';
-import { NextFunction, Response, Request } from 'express';
-
-const auth = getAuth();
-const token = process.env.FIREBASE_TOKEN;
+import { find } from 'lodash';
+import type { Request, Response, NextFunction } from 'express';
+import type { UserDocument } from '../models/user';
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-  if (!token) {
-    return res.status(401).json({
-      message: 'No token provided',
-    });
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+};
+
+export const isAuthorized = (req: Request, res: Response, next: NextFunction) => {
+  const [provider] = req.path.split('/').slice(-1);
+  const user = req.user as UserDocument;
+
+  if (find(user.tokens, { kind: provider })) {
+    return next();
   }
 
-  signInWithCustomToken(auth, token)
-    .then(({ user }) => {
-      res.locals.user = user;
-      next();
-    })
-    .catch((error) =>
-      res.status(401).json({
-        message: error,
-      }),
-    );
+  res.redirect(`/auth/${provider}`);
 };

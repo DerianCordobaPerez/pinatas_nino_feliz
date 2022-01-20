@@ -3,8 +3,10 @@ import { MONGODB_URL } from './config/database.config';
 
 (async () => {
   try {
-    const db = await connect(MONGODB_URL);
-    console.log(`Connected to MongoDB to ${db.connection.name}`);
+    const {
+      connection: { name },
+    } = await connect(MONGODB_URL);
+    console.log(`Connected to MongoDB to ${name}`);
   } catch (error) {
     console.error(`Error connecting to MongoDB ${error}`);
   }
