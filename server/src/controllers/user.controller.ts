@@ -1,0 +1,132 @@
+import { body, check, validationResult } from 'express-validator';
+import { authenticate } from 'passport';
+import User from '../models/user';
+import type { Request, Response, NextFunction } from 'express';
+import type { IVerifyOptions } from 'passport-local';
+import type { NativeError } from 'mongoose';
+import type { UserDocument } from '../models/user';
+
+/**
+ * GET /signin
+ * @param req
+ * @param res
+ */
+export const signin = (req: Request, res: Response): void => {
+  res.render('dashboard/signin', {
+    title: 'Iniciar sesión',
+  });
+};
+
+/**
+ * POST /signin
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise<void>}
+ */
+export const handleSignin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  await check('email', 'El email no es válido').isEmail().run(req);
+  await check('password', 'La contraseña debe tener al menos 6 caracteres').isLength({ min: 6 }).run(req);
+  await body('email').normalizeEmail({ gmail_remove_dots: false }).run(req);
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    req.flash('error', errors.array());
+    return res.redirect('/signin');
+  }
+
+  authenticate('local', (err: Error, user: UserDocument, info: IVerifyOptions) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      req.flash('error', { message: info.message });
+      return res.redirect('/signin');
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      req.flash('success', { message: `Bienvenido de nuevo ${user.name}` });
+      res.redirect('/');
+    });
+  })(req, res, next);
+};
+
+/**
+ * GET /signup
+ * @param req
+ * @param res
+ */
+export const signup = (req: Request, res: Response): void => {
+  res.render('dashboard/signup', {
+    title: 'Registrarse',
+  });
+};
+
+/**
+ * POST /signup
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise<void>}
+ */
+export const handleSignup = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  await check('name', 'El nombre no es válido').isLength({ min: 1 }).run(req);
+  await check('email', 'El email no es válido').isEmail().run(req);
+  await check('password', 'La contraseña debe tener al menos 6 caracteres').isLength({ min: 6 }).run(req);
+  await body('email').normalizeEmail({ gmail_remove_dots: false }).run(req);
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    req.flash('error', errors.array());
+    return res.redirect('/signup');
+  }
+
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  User.findOne({ email: req.body.email }, (err: NativeError, existingUser: UserDocument) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (existingUser) {
+      req.flash('error', { message: 'El correo electrico ya se encuentra registrado.' });
+      return res.redirect('/signup');
+    }
+
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect('/');
+      });
+    });
+  });
+};
+
+/**
+ * GET / logout
+ * @param req
+ * @param res
+ */
+export const logout = (req: Request, res: Response): void => {
+  req.logout();
+  req.flash('success', { message: 'Has cerrado sesión' });
+  res.redirect('/signin');
+};
