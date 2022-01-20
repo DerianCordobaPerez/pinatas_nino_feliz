@@ -10,7 +10,6 @@
     "ncp": "ncp src/views dist/views && ncp src/public dist/public",
     "build": "tsc -p . && npm run sass:compile && npm run ncp",
     "start": "node dist/index.js",
-    "dev": "nodemon --exec npm run build && npm run start",
     "test": "jest --forceExit --coverage --verbose --detectOpenHandles"
   },
   "keywords": [],
