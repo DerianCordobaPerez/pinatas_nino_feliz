@@ -11,6 +11,9 @@ import MongoStore from 'connect-mongo';
 import compression from 'compression';
 import passport from 'passport';
 import expressFlash from 'express-flash';
+import lusca from 'lusca';
+import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
+import Handlebars from 'handlebars';
 import { error404 } from './libs/error';
 import productRoutes from './routes/product.routes';
 import userRoutes from './routes/user.routes';
@@ -28,6 +31,7 @@ app.set('views', join(__dirname, 'views'));
 app.engine(
   '.hbs',
   engine({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: 'main',
     layoutsDir: join(app.get('views'), 'layouts'),
     partialsDir: join(app.get('views'), 'partials'),
@@ -53,6 +57,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressFlash());
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xssProtection(true));
 app.use(flash);
 app.use(redirect);
 app.use(cors());

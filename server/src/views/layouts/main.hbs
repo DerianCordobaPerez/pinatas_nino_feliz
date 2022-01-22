@@ -26,18 +26,15 @@
     <div class="container-scroller">
         {{#if user}}
         {{>sidebar}}
-
-        <div class="container-fluid page-body-wrapper">
-            {{>navbar}}
-            {{>flash}}
-            {{{body}}}
-        </div>
-        {{else}}
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            {{>flash}}
-            {{{body}}}
-        </div>
         {{/if}}
+
+        <div class="container-fluid page-body-wrapper{{#unless user}} full-page-wrapper{{/unless}}">
+            {{#if user}}
+            {{>navbar}}
+            {{/if}}
+            {{>flash}}
+            {{{body}}}
+        </div>
     </div>
 
     <!-- plugins:js -->
@@ -60,6 +57,7 @@
     <!-- Custom js for this page -->
     <script src="/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
 </body>
 
 </html>

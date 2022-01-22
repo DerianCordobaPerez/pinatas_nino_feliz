@@ -34,7 +34,7 @@ export const handleSignin = async (req: Request, res: Response, next: NextFuncti
 
   if (!errors.isEmpty()) {
     req.flash('error', errors.array());
-    return res.redirect('/admin/dashbord/signin');
+    return res.redirect('/admin/dashboard/signin');
   }
 
   passport.authenticate('local', (err: Error, user: UserDocument, info: IVerifyOptions) => {
@@ -93,6 +93,7 @@ export const handleSignup = async (req: Request, res: Response, next: NextFuncti
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    avatar: req.file.originalname,
   });
 
   User.findOne({ email: req.body.email }, (err: NativeError, existingUser: UserDocument) => {
