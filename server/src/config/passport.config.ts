@@ -1,29 +1,39 @@
 import { NativeError } from 'mongoose';
-import { use, serializeUser, deserializeUser } from 'passport';
+import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import User, { comparePassword } from '../models/user';
+import User from '../models/user';
 import type { UserDocument } from '../models/user';
 
-use(
-  new LocalStrategy({ usernameField: 'email' }, async (email: string, password: string, done): Promise<void> => {
-    const user = await User.findOne({ email });
+passport.serializeUser<any, any>((req, user, done) => {
+  done(undefined, user);
+});
 
-    if (!user) {
-      return done(null, false, { message: `Email ${email} not found.` });
-    }
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err: NativeError, user: UserDocument) => done(err, user));
+});
 
-    const match = await comparePassword(password, user.password);
+passport.use(
+  new LocalStrategy({ usernameField: 'email' }, async (email: string, password: string, done) => {
+    User.findOne({ email: email.toLowerCase() }, (err: NativeError, user: UserDocument) => {
+      if (err) {
+        return done(err);
+      }
 
-    return done(null, user, {
-      message: match ? 'Logged in' : 'Wrong password',
+      if (!user) {
+        return done(undefined, false, { message: `El email ${email} no existe.` });
+      }
+
+      user.comparePassword(password, (err: NativeError, isMatch: boolean) => {
+        if (err) {
+          return done(err);
+        }
+
+        if (isMatch) {
+          return done(undefined, user);
+        }
+
+        return done(undefined, false, { message: 'Contraseña incorrecta.' });
+      });
     });
   }),
 );
-
-serializeUser<any, any>((req, user, done) => {
-  done(null, user);
-});
-
-deserializeUser((id, done) => {
-  User.findById(id, (err: NativeError, user: UserDocument) => done(err, user));
-});

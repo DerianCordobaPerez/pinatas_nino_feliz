@@ -14,6 +14,7 @@ import expressFlash from 'express-flash';
 import { error404 } from './libs/error';
 import productRoutes from './routes/product.routes';
 import userRoutes from './routes/user.routes';
+import homeRoutes from './routes/home.routes';
 import { flash } from './middlewares/flash';
 import { redirect } from './middlewares/redirect';
 import { MONGODB_URL } from './config/database.config';
@@ -60,6 +61,7 @@ app.use(helmet());
 // Routes
 app.use('/api/ecommerce/v1/', productRoutes);
 app.use('/admin/dashboard/', userRoutes);
+app.use('/', homeRoutes);
 app.use(error404);
 
 export default app;

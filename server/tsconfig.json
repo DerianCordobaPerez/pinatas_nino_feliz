@@ -12,9 +12,10 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "src/types/*"]
-    }
+      "*": ["*", "types/*"]
+    },
+    "typeRoots": ["types"]
   },
-  "include": ["src/types/**/*.d.ts", "src/**/*"],
+  "include": ["types/*", "src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

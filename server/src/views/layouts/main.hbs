@@ -5,30 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Css Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <!-- Custom Css -->
-    <link rel="stylesheet" href="/css/index.css">
-    <title>Panel de Administración</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <title>{{title}}</title>
 </head>
 
 <body>
-    <div id="app">
-        {{>navbar}}
+    <div class="container-scroller">
+        {{#if user}}
+        {{>sidebar}}
 
-        <main class="container p-2">
+        <div class="container-fluid page-body-wrapper">
+            {{>navbar}}
             {{>flash}}
             {{{body}}}
-        </main>
-
+        </div>
+        {{else}}
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            {{>flash}}
+            {{{body}}}
+        </div>
+        {{/if}}
     </div>
 
-    <!-- Scripts Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <!-- plugins:js -->
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/vendors/chart.js/Chart.min.js"></script>
+    <script src="/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
 </body>
 
 </html>
