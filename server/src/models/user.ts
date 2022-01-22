@@ -1,17 +1,11 @@
 import { Document, Schema, model, Error } from 'mongoose';
 import { hash, compare, genSalt } from 'bcrypt';
 
-export declare interface AuthToken {
-  accessToken: string;
-  kind: string;
-}
-
 export type UserDocument = Document & {
   name: string;
   email: string;
   password: string;
   avatar: string;
-  tokens: AuthToken[];
   comparePassword: comparePasswordFunction;
 };
 
@@ -35,7 +29,6 @@ const UserSchema = new Schema<UserDocument>(
     avatar: {
       type: String,
     },
-    tokens: Array,
   },
   { collection: 'Users', timestamps: true },
 );
@@ -69,11 +62,5 @@ const comparePassword: comparePasswordFunction = function (candidatePassword, ca
 };
 
 UserSchema.methods.comparePassword = comparePassword;
-const User = model<UserDocument>('User', UserSchema);
 
-export async function findUserByEmail(email: string): Promise<boolean> {
-  const user = await User.findOne({ email });
-  return user !== null;
-}
-
-export default User;
+export default model<UserDocument>('User', UserSchema);
