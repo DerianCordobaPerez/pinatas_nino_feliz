@@ -1,6 +1,7 @@
 import { body, check, validationResult } from 'express-validator';
-import { authenticate } from 'passport';
+import passport from 'passport';
 import User from '../models/user';
+import '../config/passport.config';
 import type { Request, Response, NextFunction } from 'express';
 import type { IVerifyOptions } from 'passport-local';
 import type { NativeError } from 'mongoose';
@@ -12,7 +13,7 @@ import type { UserDocument } from '../models/user';
  * @param res
  */
 export const signin = (req: Request, res: Response): void => {
-  res.render('dashboard/signin', {
+  res.render('auth/signin', {
     title: 'Iniciar sesión',
   });
 };
@@ -33,17 +34,17 @@ export const handleSignin = async (req: Request, res: Response, next: NextFuncti
 
   if (!errors.isEmpty()) {
     req.flash('error', errors.array());
-    return res.redirect('/signin');
+    return res.redirect('/admin/dashbord/signin');
   }
 
-  authenticate('local', (err: Error, user: UserDocument, info: IVerifyOptions) => {
+  passport.authenticate('local', (err: Error, user: UserDocument, info: IVerifyOptions) => {
     if (err) {
       return next(err);
     }
 
     if (!user) {
       req.flash('error', { message: info.message });
-      return res.redirect('/signin');
+      return res.redirect('/admin/dashboard/signin');
     }
 
     req.logIn(user, (err) => {
@@ -63,7 +64,7 @@ export const handleSignin = async (req: Request, res: Response, next: NextFuncti
  * @param res
  */
 export const signup = (req: Request, res: Response): void => {
-  res.render('dashboard/signup', {
+  res.render('auth/signup', {
     title: 'Registrarse',
   });
 };
@@ -85,7 +86,7 @@ export const handleSignup = async (req: Request, res: Response, next: NextFuncti
 
   if (!errors.isEmpty()) {
     req.flash('error', errors.array());
-    return res.redirect('/signup');
+    return res.redirect('/admin/dashboard/signup');
   }
 
   const user = new User({
@@ -101,7 +102,7 @@ export const handleSignup = async (req: Request, res: Response, next: NextFuncti
 
     if (existingUser) {
       req.flash('error', { message: 'El correo electrico ya se encuentra registrado.' });
-      return res.redirect('/signup');
+      return res.redirect('/admin/dashboard/signup');
     }
 
     user.save((err) => {
@@ -128,5 +129,5 @@ export const handleSignup = async (req: Request, res: Response, next: NextFuncti
 export const logout = (req: Request, res: Response): void => {
   req.logout();
   req.flash('success', { message: 'Has cerrado sesión' });
-  res.redirect('/signin');
+  res.redirect('/admin/dashboard/signin');
 };
