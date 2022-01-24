@@ -3,7 +3,7 @@
  * to reference this file and not the node_modules package.
  */
 
-import session from 'express-session';
+import session from 'express-session-types';
 
 declare module 'express-session' {
   export interface SessionData {

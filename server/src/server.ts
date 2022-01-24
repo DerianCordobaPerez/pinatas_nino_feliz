@@ -11,7 +11,7 @@ import MongoStore from 'connect-mongo';
 import compression from 'compression';
 import passport from 'passport';
 import expressFlash from 'express-flash';
-import lusca from 'lusca';
+import { xframe, xssProtection } from 'lusca';
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
 import Handlebars from 'handlebars';
 import { error404 } from './libs/error';
@@ -21,6 +21,7 @@ import homeRoutes from './routes/home.routes';
 import { flash } from './middlewares/flash';
 import { redirect } from './middlewares/redirect';
 import { MONGODB_URL } from './config/database.config';
+import sessionTypes from './types/express-session-types';
 
 // Create express server
 const app = Express();
@@ -57,8 +58,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressFlash());
-app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
+app.use(xframe('SAMEORIGIN'));
+app.use(xssProtection(true));
 app.use(flash);
 app.use(redirect);
 app.use(cors());
