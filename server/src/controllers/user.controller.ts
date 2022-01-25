@@ -2,10 +2,10 @@ import { body, check, validationResult } from 'express-validator';
 import passport from 'passport';
 import User from '../models/user';
 import '../config/passport.config';
+import type { UserDocument } from '../types/user-document';
 import type { Request, Response, NextFunction } from 'express';
 import type { IVerifyOptions } from 'passport-local';
 import type { NativeError } from 'mongoose';
-import type { UserDocument } from '../models/user';
 
 /**
  * GET /signin

@@ -1,15 +1,6 @@
-import { Document, Schema, model, Error } from 'mongoose';
+import { Schema, model, Error } from 'mongoose';
 import { hash, compare, genSalt } from 'bcrypt';
-
-export type UserDocument = Document & {
-  name: string;
-  email: string;
-  password: string;
-  avatar: string;
-  comparePassword: comparePasswordFunction;
-};
-
-type comparePasswordFunction = (candidatePassword: string, callback: (err: any, isMatch: any) => void) => void;
+import type { UserDocument, ComparePasswordFunction } from '../types/user-document';
 
 const UserSchema = new Schema<UserDocument>(
   {
@@ -55,7 +46,7 @@ UserSchema.pre('save', function save(next) {
   });
 });
 
-const comparePassword: comparePasswordFunction = function (candidatePassword, callback) {
+const comparePassword: ComparePasswordFunction = function (candidatePassword, callback) {
   compare(candidatePassword, this.password, (error: Error, isMatch: boolean) => {
     callback(error, isMatch);
   });

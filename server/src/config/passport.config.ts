@@ -2,7 +2,7 @@ import { NativeError } from 'mongoose';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import User from '../models/user';
-import type { UserDocument } from '../models/user';
+import type { UserDocument } from '../types/user-document';
 
 passport.serializeUser<any, any>((req, user, done) => {
   done(undefined, user);
