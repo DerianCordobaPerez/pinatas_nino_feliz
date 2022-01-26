@@ -21,13 +21,14 @@ import homeRoutes from './routes/home.routes';
 import { flash } from './middlewares/flash';
 import { redirect } from './middlewares/redirect';
 import { MONGODB_URL } from './config/database.config';
+import { SECRET_SESSION, PORT } from './config/env.config';
 import sessionTypes from './types/express-session-types';
 
 // Create express server
 const app = Express();
 
 // Settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', PORT);
 app.set('views', join(__dirname, 'views'));
 app.engine(
   '.hbs',
@@ -49,7 +50,7 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(
   session({
-    secret: process.env.SECRET_SESSION ?? '',
+    secret: SECRET_SESSION,
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({ mongoUrl: MONGODB_URL }),
