@@ -2,10 +2,11 @@ import { body, check, validationResult } from 'express-validator';
 import passport from 'passport';
 import User from '../models/user';
 import '../config/passport.config';
+import { DASHBOARD_PREFIX } from '../config/constants.config';
+import type { UserDocument } from '../types/user-document';
 import type { Request, Response, NextFunction } from 'express';
 import type { IVerifyOptions } from 'passport-local';
 import type { NativeError } from 'mongoose';
-import type { UserDocument } from '../models/user';
 
 /**
  * GET /signin
@@ -34,7 +35,7 @@ export const handleSignin = async (req: Request, res: Response, next: NextFuncti
 
   if (!errors.isEmpty()) {
     req.flash('error', errors.array());
-    return res.redirect('/admin/dashbord/signin');
+    return res.redirect(`${DASHBOARD_PREFIX}/signin`);
   }
 
   passport.authenticate('local', (err: Error, user: UserDocument, info: IVerifyOptions) => {
@@ -44,7 +45,7 @@ export const handleSignin = async (req: Request, res: Response, next: NextFuncti
 
     if (!user) {
       req.flash('error', { message: info.message });
-      return res.redirect('/admin/dashboard/signin');
+      return res.redirect(`${DASHBOARD_PREFIX}/signin`);
     }
 
     req.logIn(user, (err) => {
@@ -93,6 +94,7 @@ export const handleSignup = async (req: Request, res: Response, next: NextFuncti
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    avatar: req.file.originalname,
   });
 
   User.findOne({ email: req.body.email }, (err: NativeError, existingUser: UserDocument) => {

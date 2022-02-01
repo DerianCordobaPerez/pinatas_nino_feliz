@@ -1,21 +1,17 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "skipLibCheck": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "lib": ["es2017"],
-    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "types/*"]
-    },
-    "typeRoots": ["types"]
+      "*": ["node_modules/*", "src/types/*"]
+    }
   },
-  "include": ["types/*", "src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["src/**/*"]
 }

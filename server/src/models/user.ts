@@ -1,21 +1,6 @@
-import { Document, Schema, model, Error } from 'mongoose';
+import { Schema, model, Error } from 'mongoose';
 import { hash, compare, genSalt } from 'bcrypt';
-
-export declare interface AuthToken {
-  accessToken: string;
-  kind: string;
-}
-
-export type UserDocument = Document & {
-  name: string;
-  email: string;
-  password: string;
-  avatar: string;
-  tokens: AuthToken[];
-  comparePassword: comparePasswordFunction;
-};
-
-type comparePasswordFunction = (candidatePassword: string, callback: (err: any, isMatch: any) => void) => void;
+import type { UserDocument, ComparePasswordFunction } from '../types/user-document';
 
 const UserSchema = new Schema<UserDocument>(
   {
@@ -35,7 +20,6 @@ const UserSchema = new Schema<UserDocument>(
     avatar: {
       type: String,
     },
-    tokens: Array,
   },
   { collection: 'Users', timestamps: true },
 );
@@ -62,18 +46,12 @@ UserSchema.pre('save', function save(next) {
   });
 });
 
-const comparePassword: comparePasswordFunction = function (candidatePassword, callback) {
+const comparePassword: ComparePasswordFunction = function (candidatePassword, callback) {
   compare(candidatePassword, this.password, (error: Error, isMatch: boolean) => {
     callback(error, isMatch);
   });
 };
 
 UserSchema.methods.comparePassword = comparePassword;
-const User = model<UserDocument>('User', UserSchema);
 
-export async function findUserByEmail(email: string): Promise<boolean> {
-  const user = await User.findOne({ email });
-  return user !== null;
-}
-
-export default User;
+export default model<UserDocument>('User', UserSchema);
