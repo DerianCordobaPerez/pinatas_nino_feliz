@@ -67,7 +67,7 @@ app.use(cors());
 app.use(helmet());
 
 // Routes
-app.use('/api/ecommerce/v1/', productRoutes);
+app.use(productRoutes);
 app.use('/admin/dashboard/', userRoutes);
 app.use('/', homeRoutes);
 app.use(error404);
