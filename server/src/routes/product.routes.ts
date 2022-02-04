@@ -19,7 +19,7 @@ router.get('/api/ecommerce/v1/products/:slug', findOne);
 router.get('/api/ecommerce/v1/products/category/:category', findByCategory);
 router.get('/products', index);
 router.get('/products/create', isAuthenticated, create);
-router.post('/products/create', [isAuthenticated, uploadImages('images')], store);
+router.post('/products/create', [isAuthenticated, uploadImages('products')], store);
 router.put('/products/:slug/edit', isAuthenticated, update);
 router.delete('/products/:slug/destroy', isAuthenticated, destroy);
 
