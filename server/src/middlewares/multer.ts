@@ -1,7 +1,14 @@
 import multer from 'multer';
+import { paths } from '../utils/images-paths';
 
 const storage = multer.diskStorage({
-  destination: (req, file, callback) => callback(null, './src/public/images/profile'),
+  destination: (req, { fieldname }, callback) => {
+    if (!paths[fieldname]) {
+      throw new Error('Invalid paths to save images');
+    }
+
+    callback(null, paths[fieldname]);
+  },
   filename: (req, { originalname }, callback) => callback(null, originalname),
 });
 
