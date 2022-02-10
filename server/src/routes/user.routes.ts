@@ -5,7 +5,7 @@ import { isAuthenticated } from '../middlewares/auth';
 
 const router = Router();
 
-router.get('/signup', signup);
+router.get('/signup', isAuthenticated, signup);
 router.post('/signup', [isAuthenticated, uploadImage('avatar')], handleSignup);
 router.get('/signin', signin);
 router.post('/signin', handleSignin);

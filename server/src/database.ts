@@ -1,5 +1,5 @@
 import { connect } from 'mongoose';
-import { MONGODB_URL } from './config/database.config';
+import { MONGODB_URL } from './config/env.config';
 
 (async () => {
   try {

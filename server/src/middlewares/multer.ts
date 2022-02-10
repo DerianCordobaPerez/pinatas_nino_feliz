@@ -1,5 +1,5 @@
 import multer from 'multer';
-import { paths } from '../utils/images-paths';
+import { paths } from '../config/images-path.config';
 
 const storage = multer.diskStorage({
   destination: (req, { fieldname }, callback) => {

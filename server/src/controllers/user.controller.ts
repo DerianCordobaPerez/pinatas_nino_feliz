@@ -24,7 +24,6 @@ export const signin = (req: Request, res: Response): void => {
  * @param req
  * @param res
  * @param next
- * @returns {Promise<void>}
  */
 export const handleSignin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   await check('email', 'El email no es válido').isEmail().run(req);
@@ -75,12 +74,11 @@ export const signup = (req: Request, res: Response): void => {
  * @param req
  * @param res
  * @param next
- * @returns {Promise<void>}
  */
 export const handleSignup = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   await check('name', 'El nombre no es válido').isLength({ min: 1 }).run(req);
   await check('email', 'El email no es válido').isEmail().run(req);
-  await check('password', 'La contraseña debe tener al menos 6 caracteres').isLength({ min: 6 }).run(req);
+  await check('password', 'La contraseña debe tener al menos 8 caracteres').isLength({ min: 8 }).run(req);
   await body('email').normalizeEmail({ gmail_remove_dots: false }).run(req);
 
   const errors = validationResult(req);

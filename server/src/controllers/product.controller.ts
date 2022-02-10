@@ -49,10 +49,23 @@ export async function findOne(req: Request, res: Response) {
   res.json(product);
 }
 
+export async function findByCategory(req: Request, res: Response) {
+  const { category } = req.params;
+  const products = await Product.find({ category });
+  res.json(products);
+}
+
+export function edit(req: Request, res: Response) {
+  return res.render('products/edit', {
+    title: 'Editar producto',
+  });
+}
+
 export async function update(req: Request, res: Response) {
   const { slug } = req.params;
-  const product = await Product.findOneAndUpdate({ slug }, req.body);
-  res.json(product);
+  await Product.findOneAndUpdate({ slug }, req.body);
+  req.flash('success', ['Producto actualizado correctamente']);
+  res.redirect('/products');
 }
 
 export async function destroy(req: Request, res: Response) {
@@ -60,10 +73,4 @@ export async function destroy(req: Request, res: Response) {
   await Product.findOneAndRemove({ slug });
   req.flash('success', ['Producto eliminado correctamente']);
   res.redirect('/products');
-}
-
-export async function findByCategory(req: Request, res: Response) {
-  const { category } = req.params;
-  const products = await Product.find({ category });
-  res.json(products);
 }
