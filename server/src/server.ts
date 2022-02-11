@@ -16,6 +16,7 @@ import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access
 import Handlebars from 'handlebars';
 import { error404 } from './middlewares/404';
 import productRoutes from './routes/product.routes';
+import productApiRoutes from './routes/api/products.routes';
 import userRoutes from './routes/user.routes';
 import homeRoutes from './routes/home.routes';
 import { flash } from './middlewares/flash';
@@ -67,6 +68,7 @@ app.use(helmet());
 
 // Routes
 app.use(productRoutes);
+app.use('/api/ecommerce/v1/', productApiRoutes);
 app.use('/admin/dashboard/', userRoutes);
 app.use('/', homeRoutes);
 app.use(error404);
