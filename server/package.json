@@ -8,7 +8,7 @@
     "format": "eslint src/**/*.ts --fix",
     "sass:compile": "sass src/public/scss:src/public/css",
     "ncp": "ncp src/views dist/views && ncp src/public dist/public",
-    "assets": "concurrently -k \"npm run sass:compile\" \"npm run ncp\"",
+    "assets": "npm run sass:compile && npm run ncp",
     "build": "tsc -p . && npm run assets",
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/index.ts --transpileOnly --respawn --watch",
@@ -18,8 +18,8 @@
   "author": "Derian Córdoba",
   "license": "MIT",
   "engines": {
-    "node": "14.18.3",
-    "npm": "8.3.1"
+    "node": "16.13.2",
+    "npm": "8.1.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -57,7 +57,6 @@
     "chart.js": "^2.8.0",
     "codemirror": "^5.48.0",
     "compression": "^1.7.4",
-    "concurrently": "^7.0.0",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^11.0.0",

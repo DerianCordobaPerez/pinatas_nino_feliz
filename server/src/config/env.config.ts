@@ -6,3 +6,7 @@ export const DB_NAME = process.env.DB_NAME || 'test';
 export const NODE_ENV = process.env.NODE_ENV || 'development';
 export const PORT = process.env.PORT || 3000;
 export const SECRET_SESSION = process.env.SECRET_SESSION || 'secret';
+export const MONGODB_URL =
+  NODE_ENV === 'production'
+    ? `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
+    : `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;

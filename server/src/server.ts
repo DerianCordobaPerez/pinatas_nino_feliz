@@ -14,14 +14,14 @@ import expressFlash from 'express-flash';
 import { xframe, xssProtection } from 'lusca';
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
 import Handlebars from 'handlebars';
-import { error404 } from './libs/error';
+import { error404 } from './middlewares/404';
 import productRoutes from './routes/product.routes';
+import productApiRoutes from './routes/api/products.routes';
 import userRoutes from './routes/user.routes';
 import homeRoutes from './routes/home.routes';
 import { flash } from './middlewares/flash';
 import { redirect } from './middlewares/redirect';
-import { MONGODB_URL } from './config/database.config';
-import { SECRET_SESSION, PORT } from './config/env.config';
+import { SECRET_SESSION, PORT, MONGODB_URL } from './config/env.config';
 import sessionTypes from './types/express-session-types';
 
 // Create express server
@@ -68,6 +68,7 @@ app.use(helmet());
 
 // Routes
 app.use(productRoutes);
+app.use('/api/ecommerce/v1/', productApiRoutes);
 app.use('/admin/dashboard/', userRoutes);
 app.use('/', homeRoutes);
 app.use(error404);

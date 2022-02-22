@@ -1,14 +1,10 @@
 import Card from 'components/card'
 
-export default function ProductListItem ({ name, price, images, numberReviews, rating, ...props }) {
+export default function ProductListItem ({ new: isNew, ...props }) {
   return (
     <Card
-      name={name}
-      price={price}
-      imageUrl={images}
-      isNew={props.new}
-      numberReviews={numberReviews}
-      rating={rating}
+      isNew={isNew}
+      {...props}
     />
   )
 }

@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
+import Loading from 'components/loading'
 
 export default function Slug () {
   const { isFallback } = useRouter()
 
   return isFallback
-    ? (
-      <div>
-        Loading...
-      </div>
-    )
+    ? <Loading />
     : (
       <div>
         Product

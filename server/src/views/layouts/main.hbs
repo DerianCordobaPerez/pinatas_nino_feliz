@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -25,12 +25,12 @@
 <body>
     <div class="container-scroller">
         {{#if user}}
-        {{>sidebar}}
+            {{>sidebar}}
         {{/if}}
 
-        <div class="container-fluid page-body-wrapper{{#unless user}} full-page-wrapper{{/unless}}">
+        <div class="container-fluid page-body-wrapper {{#unless user}}full-page-wrapper{{/unless}}">
             {{#if user}}
-            {{>navbar}}
+                {{>navbar}}
             {{/if}}
             {{>flash}}
             {{{body}}}
@@ -61,7 +61,6 @@
     <script src="/js/file-upload.js"></script>
     <script src="/js/typeahead.js"></script>
     <!-- End custom js for this page -->
-
 </body>
 
 </html>
